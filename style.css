@@ -2,8 +2,270 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    cursor: default;
 }
 
 html {
     font-family: Arial, Helvetica, sans-serif;
 }
+
+
+
+/* BACKGROUND */
+.bg {
+    height: 100vh;
+    position: relative;
+}
+
+.bg-top {
+    height: 150px;
+    background-color: #1e9588;
+}
+
+.bg-bottom {
+    height: calc(100% - 150px);
+    background-color: #dcdbd1;
+}
+/* FINE BACKGROUND */
+
+
+
+/* CONTAINER */
+.container {
+    width: 80%;
+    min-width: 1010px;
+    max-width: 1300px;
+    height: calc(100vh - 60px);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    display: flex;
+}
+/* FINE CONTAINER */
+
+
+
+/* COMUNI */
+.top {
+    height: 80px;
+    padding-left: 10px;
+    padding-right: 20px;
+    background-color: #eaeaea;
+}
+
+.top.micro-layout i{
+    font-size: 1.4rem;
+    color: #b1b1b1;
+    margin: 0px 7px;
+}
+
+.micro-layout {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.micro-layout img {
+    width: 60px;
+    height: auto;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.micro-layout .ml-left {
+    display: flex;
+    align-items: center;
+}
+
+.micro-layout .ml-txt {
+    display: flex;
+    flex-direction: column;
+    line-height: 20px;
+}
+
+.subtitle {
+    font-size: 0.9rem;
+    color: #b1b1b1;
+}
+
+.subtitle.dark {
+    color: #8c8c8c;
+}
+
+i:hover, a:hover {
+    cursor: pointer;
+}
+
+input::placeholder {
+    color: #b1b1b1;
+}
+
+input:focus{
+    outline: none;
+    cursor: text;
+}
+/* FINE COMUNI */
+
+
+
+/* SIDEBAR */
+aside {
+    width: 35%;
+    height: 100%;
+    border-right: 1px solid #b1b1b1;
+}
+/* sidebar middle */
+.sidebar-middle .micro-layout {
+    height: 90px;
+    background-color: #8edafc;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.rounded-box {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    margin-right: 15px;
+}
+
+.rounded-box i {
+    color: #8edafc;
+    font-size: 1.5rem;
+}
+
+.searchbar-box {
+    padding: 10px;
+    background-color: #fafafa;
+}
+
+.search-bar {
+    width: calc(100%-20px);
+    height: 30px;
+    display: flex;
+    border: 1px solid #eaeaea;
+    background-color: #fff;
+    border-radius: 3px;
+}
+
+.search-bar .lens {
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #b1b1b1;
+}
+
+.search-bar input{
+    width: calc(100% - 60px);
+    padding-left: 10px;
+    border: none;
+    color: #8c8c8c;
+}
+
+/* sidebar-bottom */
+.sidebar-bottom {
+    height: calc(100% - 220px);
+    overflow-y: scroll;
+}
+
+.sidebar-bottom .micro-layout {
+    height: 80px;
+    padding-left: 20px;
+    padding-right: 10px;
+    position: relative;
+}
+
+.sidebar-bottom .micro-layout:hover {
+    background-color: #eaeaea;
+}
+
+.sidebar-bottom .ml-txt {
+    align-self: flex-start;
+}
+
+.sidebar-bottom .ml-right {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}
+/* FINE SIDEBAR */
+
+
+
+/* MAIN */
+main {
+    width: 65%;
+    height: 100%;
+}
+
+/* main middle */
+.main-middle {
+    height: calc(100% - 160px);
+    overflow-y: scroll;
+    background-image: url('img/mine.jpg');
+    border-right: 15px solid #fff;
+    padding: 30px 50px 0px 50px;
+}
+
+.row {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.row.sent {
+    justify-content: flex-end;
+}
+
+.message {
+    min-width: 180px;
+    max-width: 300px;
+    padding: 20px 15px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.row.sent .message{
+    background-color: #d6f9ba;
+}
+
+.row.received .message{
+    background-color: #fff;
+}
+
+.message .subtitle {
+    position: absolute;
+    bottom: 2px;
+    right: 5px;
+    font-size: 0.7rem;
+}
+
+/* main bottom */
+.main-bottom {
+    height: 80px;
+    background-color: #f4eeea;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.main-bottom i {
+    color: #6c7376;
+    font-size: 1.8rem;
+}
+
+.main-bottom input {
+    width: 75%;
+    height: 55px;
+    padding: 10px;
+    border-radius: 4px;
+    border: none;
+}
+/* FINE MAIN */
