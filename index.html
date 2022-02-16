@@ -65,14 +65,18 @@
 
                 <!-- contatti -->
                 <div class="contacts">
-                    <div class="contact user-layout" v-for="(contact, index) in contacts">
-                        <img class="avatar" :src=" 'img/avatar' + contact.avatar + '.jpg' ">
-                        <div class="side-txt">
-                            <span class="name">{{contact.name}}</span>
-                            <span class="last-txt">{{getLastText(index)}}</span>
-                        </div>
+                    <div v-for="(contact, index) in contacts">
+                        <!-- :class="{'active': contact.visible}" -->
+                        <div class="contact user-layout" @click="makeVisible(index)">
+                            <img class="avatar" :src=" 'img/avatar' + contact.avatar + '.jpg' ">
+                            <div class="side-txt">
+                                <span class="name">{{contact.name}}</span>
+                                <span class="last-txt">{{getLastText(index)}}</span>
+                            </div>
                         <span class="last-message">{{getLastDate(index)}}</span>
                     </div>
+                    </div>
+                    
                 </div>
                 <!-- fine contatti -->
 
@@ -86,15 +90,17 @@
             <main>
                 <!-- main top -->
                 <div class="top">
-                    <div class="user-layout">
-                        <img class="avatar" src="img/avatar_1.jpg">
-                        <div class="side-txt">
-                            <span class="name">Michele</span>
-                            <span class="last-access">
-                                <span>Ultimo accesso oggi 10/01/2020</span>
-                                <span>alle 16:15:22</span>
-                            </span>
-                        </div>
+                    <div class="user-layout" v-for="(contact, index) in contacts" v-if="contact.visible">
+                        
+                            <img class="avatar" :src=" 'img/avatar' + contact.avatar + '.jpg' ">
+                            <div class="side-txt">
+                                <span class="name">{{contact.name}}</span>
+                                <span class="last-access">
+                                    <span>Ultimo accesso</span>
+                                    <span>{{getLastDate(index)}}</span>
+                                </span>
+                            </div>
+                        
                     </div>
 
                     <div class="icons">
@@ -107,25 +113,39 @@
 
                 <!-- messaggi -->
                 <div class="messages">
-                    <div class="message sent">
-                        <span>Hai portato a spasso il cane?</span>
-                        <span class="last-message">10/01/2020 15:30:55</span>
+                    <div v-for="(contact, index) in contacts">
+                        <div v-if="contact.visible">
+                            <div v-for="message in contact.messages">
+
+                                <div class="message" :class="message.status">
+                                    <span>{{message.text}}</span>
+                                    <span class="last-message">{{message.date}}</span>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
-                    <div class="message sent">
+                    <!-- <div class="message sent">
                         <span>Ricordati di dargli da mangiare</span>
                         <span class="last-message">10/01/2020 15:30:00</span>
                     </div>
                     <div class="message received">
                         <span>Tutto fatto!</span>
                         <span class="last-message">10/01/2020 15:30:22</span>
-                    </div>
+                    </div> -->
                 </div>
                 <!-- fine messaggi -->
 
                 <!-- invio messaggi -->
                 <div class="main-input">
                     <i class="fa-regular fa-face-smile"></i>
-                    <input type="text" placeholder="Scrivi un messaggio">
+                    <input
+                        type="text"
+                        placeholder="Scrivi un messaggio"
+                        ref="myFocus"
+                        v-model="newText"
+                        v-on:keyup.enter="addMessage(newText)"
+                    >
                     <i class="fa-solid fa-microphone"></i>
                 </div>
                 <!-- fine invio messaggi -->

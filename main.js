@@ -2,11 +2,12 @@ const app = new Vue (
     {
         el: '#app',
         data: {
+            newText: '',
             contacts: [
                 {
                     name: 'Michele',
                     avatar: '_1',
-                    visible: true,
+                    visible: false,
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -28,7 +29,7 @@ const app = new Vue (
                 {
                     name: 'Fabio',
                     avatar: '_2',
-                    visible: true,
+                    visible: false,
                     messages: [
                         {
                             date: '20/03/2020 16:30:00',
@@ -50,7 +51,7 @@ const app = new Vue (
                 {
                     name: 'Samuele',
                     avatar: '_3',
-                    visible: true,
+                    visible: false,
                     messages: [
                         {
                             date: '28/03/2020 10:10:40',
@@ -72,7 +73,7 @@ const app = new Vue (
                 {
                     name: 'Luisa',
                     avatar: '_4',
-                    visible: true,
+                    visible: false,
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -91,7 +92,10 @@ const app = new Vue (
             // fine contatti
         },
         // fine data
-
+        mounted() {
+            this.contacts[0].visible = true;
+            this.$nextTick(() => this.$refs.myFocus.focus());
+        },
         methods: {
             getLastText(index) {
                 const messagesLength = this.contacts[index].messages.length;
@@ -100,6 +104,46 @@ const app = new Vue (
             getLastDate(index) {
                 const messagesLength = this.contacts[index].messages.length;
                 return this.contacts[index].messages[messagesLength - 1].date;
+            },
+            makeVisible(index) {
+                this.contacts.forEach(contact => {
+                    contact.visible = false;
+                });
+                this.contacts[index].visible = true;
+            },
+            addMessage(newText) {
+                const newMessage = {
+                    date: 'ora attuale',
+                    text: newText,
+                    status: 'sent'
+                }
+                const newAnswer = {
+                    date: 'ora attuale',
+                    text: 'ok!',
+                    status: 'received'
+                }
+                this.contacts.forEach(contact => {
+                    if(contact.visible) {
+                        contact.messages.push(newMessage);
+                        this.newText = '';
+
+                        // setInterval(() => {
+                        //     contact.messages.push(newAnswer);
+                        // }, 1000);
+
+                        // var clock = setInterval(myPush, 1000);
+                        // function myPush() {
+                        //     contact.messages.push(newAnswer);
+                        // }
+                        // clearInterval(clock);
+
+                        var clock = setInterval(function() {
+                            contact.messages.push(newAnswer);
+                        }, 1000);
+
+                        clearInterval(clock);
+                    }
+                });
             }
         }
     }

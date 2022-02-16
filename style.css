@@ -2,7 +2,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    cursor: default;
 }
 
 html {
@@ -49,6 +48,10 @@ html {
     flex-direction: column;
     line-height: 20px;
 }
+
+i:hover {
+    cursor: pointer;
+}
 /* FINE COMUNI */
 
 
@@ -69,10 +72,6 @@ html {
     font-size: 1.4rem;
     color: #b1b1b1;
     margin: 0px 7px;
-}
-
-i:hover, a:hover {
-    cursor: pointer;
 }
 /* FINE TOP */
 
@@ -144,6 +143,10 @@ aside .top .name {
     color: #b1b1b1;
 }
 
+.searchbar i {
+    cursor: default;
+}
+
 .searchbar input{
     width: 100%;
     height: 100%;
@@ -159,7 +162,6 @@ input::placeholder {
 
 input:focus{
     outline: none;
-    cursor: text;
 }
 
 /* contatti */
@@ -177,6 +179,10 @@ input:focus{
 
 .contact:last-child {
     border-bottom: none;
+}
+
+.contact:hover {
+    cursor: pointer;
 }
 
 .contact .avatar {
