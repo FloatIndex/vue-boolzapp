@@ -8,92 +8,75 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet"> 
 </head
 >
 <body>
-    <div id="app">
 
-        <!-- background -->
-        <div class="bg">
-            <div class="bg-top"></div>
-            <div class="bg-bottom"></div>
-        </div>
-        <!-- fine background -->
-
-
-
+    <!-- background -->
+    <div id="app" class="bg">
 
         <!-- container -->
         <div class="container">
 
+
             <!-- side-bar -->
             <aside>
-                <!-- side-top -->
-                <div class="top user-layout">
 
-                    <div class="ul-left">
-                        <img src="img/avatar_io.jpg">
-                        <span class="name">O-Ren Ishii</span>
+                <!-- side-top -->
+                <div class="top">
+                    <div class="user-layout">
+                        <img class="avatar" src="img/avatar_io.jpg">
+                        <span class="name">Nome Utente</span>
                     </div>
 
-                    <div class="ul-right">
+                    <div class="icons">
                         <i class="fa-solid fa-circle-notch"></i>
                         <i class="fa-solid fa-message"></i>
                         <i class="fa-solid fa-ellipsis-vertical"></i>
                     </div>
-
                 </div>
                 <!-- fine side-top -->
 
-
-                <!-- side-middle -->
-                <div class="sidebar-middle">
-                    <!-- notifiche -->
-                    <div class="notifications">
-                        <div class="rounded-box">
-                            <i class="fa-solid fa-bell-slash"></i>
-                        </div>
-                        
-                        <div class="ul-txt">
-                            <p>Ricevi notifiche di nuovi messaggi</p>
-                            <a class="subtitle dark" href="#">Attiva notifiche desktop</a>
-                        </div>
+                <!-- notifiche -->
+                <div class="notifications">
+                    <div class="bell-icon">
+                        <i class="fa-solid fa-bell-slash"></i>
                     </div>
-                    <!-- fine notifiche -->
-
-                    <!-- barra ricerca -->
-                    <div class="searchbar-box">
-                        <div class="search-bar">
-                            <div class="lens">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                            </div>
-                            <input type="text" placeholder="Cerca o inizia una nuova chat">
-                        </div>
+                    
+                    <div class="side-txt">
+                        <p>Ricevi notifiche di nuovi messaggi</p>
+                        <a href="#">Attiva notifiche desktop</a>
                     </div>
-                    <!-- fine barra ricerca -->
                 </div>
-                <!-- fine side-middle -->
+                <!-- fine notifiche -->
 
-
-                <!-- side-bottom -->
-                <div class="sidebar-bottom">
-
-                    <div class="user-layout" v-for="(contact, index) in contacts">
-                        <div class="ul-left">
-                            <img :src="contact.avatar">
-                            <div class="ul-txt">
-                                <span class="name">{{contact.name}}</span>
-                                <span class="subtitle">{{getLastMessage(index)}}</span>
-                            </div>
-                        </div>
-        
-                        <div class="ul-right">
-                            <span class="subtitle">{{getLastAccess(index)}}</span>
-                        </div>
+                <!-- barra ricerca -->
+                <div class="searchbar-wrap">
+                    <div class="searchbar">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" placeholder="Cerca o inizia una nuova chat">
                     </div>
-
                 </div>
-                <!-- fine side-bottom -->
+                <!-- fine barra ricerca -->
+
+                <!-- contatti -->
+                <div class="contacts">
+                    <div class="contact user-layout" v-for="(contact, index) in contacts">
+                        <img class="avatar" :src=" 'img/avatar' + contact.avatar + '.jpg' ">
+                        <div class="side-txt">
+                            <span class="name">{{contact.name}}</span>
+                            <span class="last-txt">{{getLastText(index)}}</span>
+                        </div>
+                        <span class="last-message">{{getLastDate(index)}}</span>
+                    </div>
+                </div>
+                <!-- fine contatti -->
+
+
             </aside>
             <!-- fine sidebar -->
 
@@ -102,63 +85,59 @@
             <!-- main -->
             <main>
                 <!-- main top -->
-                <div class="top user-layout">
-
-                    <div class="ul-left">
-                        <img src="img/avatar_1.jpg">
-                        <div class="ul-txt">
+                <div class="top">
+                    <div class="user-layout">
+                        <img class="avatar" src="img/avatar_1.jpg">
+                        <div class="side-txt">
                             <span class="name">Michele</span>
-                            <span class="subtitle dark">Ultimo accesso oggi 10/01/2020</span>
-                            <span class="subtitle dark">alle 16:15</span>
+                            <span class="last-access">
+                                <span>Ultimo accesso oggi 10/01/2020</span>
+                                <span>alle 16:15:22</span>
+                            </span>
                         </div>
                     </div>
 
-                    <div class="ul-right">
+                    <div class="icons">
                         <i class="fa-solid fa-magnifying-glass"></i>
                         <i class="fa-solid fa-paperclip"></i>
                         <i class="fa-solid fa-ellipsis-vertical"></i>
                     </div>
-
                 </div>
                 <!-- fine main top -->
 
-
-                <!-- main middle -->
-                <div class="main-middle">
-                    <div class="row sent">
-                        <div class="message">
-                            <span>Hai portato a spasso il cane?</span>
-                            <span class="subtitle">10/01/2020 15:30</span>
-                        </div>
+                <!-- messaggi -->
+                <div class="messages">
+                    <div class="message sent">
+                        <span>Hai portato a spasso il cane?</span>
+                        <span class="last-message">10/01/2020 15:30:55</span>
                     </div>
-                    <div class="row sent">
-                        <div class="message">
-                            <span>Ricordati di dargli da mangiare</span>
-                            <span class="subtitle">10/01/2020 15:30</span>
-                        </div>
+                    <div class="message sent">
+                        <span>Ricordati di dargli da mangiare</span>
+                        <span class="last-message">10/01/2020 15:30:00</span>
                     </div>
-                    <div class="row received">
-                        <div class="message">
-                            <span>Tutto fatto!</span>
-                            <span class="subtitle">10/01/2020 15:30</span>
-                        </div>
+                    <div class="message received">
+                        <span>Tutto fatto!</span>
+                        <span class="last-message">10/01/2020 15:30:22</span>
                     </div>
                 </div>
-                <!-- fine main middle -->
+                <!-- fine messaggi -->
 
-
-                <!-- main bottom -->
-                <div class="main-bottom">
+                <!-- invio messaggi -->
+                <div class="main-input">
                     <i class="fa-regular fa-face-smile"></i>
                     <input type="text" placeholder="Scrivi un messaggio">
                     <i class="fa-solid fa-microphone"></i>
                 </div>
-                <!-- fine main bottom -->
+                <!-- fine invio messaggi -->
+
             </main>
             <!-- fine main -->
         </div>
         <!-- fine container -->
     </div>
+    <!-- fine background -->
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script type="text/javascript" src="main.js"></script>
