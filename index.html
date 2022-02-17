@@ -66,9 +66,8 @@
                 <!-- contatti -->
                 <div class="contacts">
                     <div v-for="(contact, index) in contacts">
-                        <!-- :class="{'active': contact.visible}" -->
-                        <div class="contact user-layout" @click="makeVisible(index)">
-                            <img class="avatar" :src=" 'img/avatar' + contact.avatar + '.jpg' ">
+                        <div class="contact user-layout" @click="setActive(index)">
+                            <img class="avatar" :src=" 'img/avatar' + contacts[index].avatar + '.jpg' ">
                             <div class="side-txt">
                                 <span class="name">{{contact.name}}</span>
                                 <span class="last-txt">{{getLastText(index)}}</span>
@@ -90,14 +89,14 @@
             <main>
                 <!-- main top -->
                 <div class="top">
-                    <div class="user-layout" v-for="(contact, index) in contacts" v-if="contact.visible">
+                    <div class="user-layout">
                         
-                            <img class="avatar" :src=" 'img/avatar' + contact.avatar + '.jpg' ">
+                            <img class="avatar" :src=" 'img/avatar' + contacts[active].avatar + '.jpg' ">
                             <div class="side-txt">
-                                <span class="name">{{contact.name}}</span>
+                                <span class="name">{{contacts[active].name}}</span>
                                 <span class="last-access">
                                     <span>Ultimo accesso</span>
-                                    <span>{{getLastDate(index)}}</span>
+                                    <span>{{getLastDate(active)}}</span>
                                 </span>
                             </div>
                         
@@ -113,26 +112,10 @@
 
                 <!-- messaggi -->
                 <div class="messages">
-                    <div v-for="(contact, index) in contacts">
-                        <div v-if="contact.visible">
-                            <div v-for="message in contact.messages">
-
-                                <div class="message" :class="message.status">
-                                    <span>{{message.text}}</span>
-                                    <span class="last-message">{{message.date}}</span>
-                                </div>
-
-                            </div>
-                        </div>
+                    <div class="message" v-for="message in contacts[active].messages" :class="message.status">
+                        <span>{{message.text}}</span>
+                        <span class="last-message">{{message.date}}</span>
                     </div>
-                    <!-- <div class="message sent">
-                        <span>Ricordati di dargli da mangiare</span>
-                        <span class="last-message">10/01/2020 15:30:00</span>
-                    </div>
-                    <div class="message received">
-                        <span>Tutto fatto!</span>
-                        <span class="last-message">10/01/2020 15:30:22</span>
-                    </div> -->
                 </div>
                 <!-- fine messaggi -->
 
