@@ -3,6 +3,7 @@ const app = new Vue (
         el: '#app',
         data: {
             newText: '',
+            searchText: '',
             active: 0,
             contacts: [
                 {
@@ -125,7 +126,17 @@ const app = new Vue (
                 setTimeout(() => {
                     this.contacts[this.active].messages.push(newAnswer);
                 }, 1000);
+            },
+            filterContact() {
+                this.contacts.forEach(contact => {
+                    if(contact.name.toLowerCase().includes(this.searchText.toLowerCase())) {
+                        contact.visible = true;
+                    } else {
+                        contact.visible = false;
+                    }
+                });
             }
         }
+        // fine metodi
     }
 )
